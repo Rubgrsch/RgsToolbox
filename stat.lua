@@ -1,5 +1,5 @@
-local addonName, rgsaddon = ...
-local C, L = unpack(rgsaddon)
+local _, rgsaddon = ...
+local C = unpack(rgsaddon)
 
 local format = string.format
 
@@ -35,6 +35,7 @@ local agiID = {
 	[577] = true,
 	[581] = true,
 }
+--[[
 local strID = {
 	[66] = true,
 	[70] = true,
@@ -45,6 +46,7 @@ local strID = {
 	[251] = true,
 	[252] = true,
 }
+]]
 
 local specType
 local function specFunc()
@@ -63,23 +65,19 @@ local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 eventFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 eventFrame:SetScript("OnEvent", specFunc)
-	
+
 local frame = CreateFrame("Frame", "MyStatFrame", UIParent)
 frame:SetSize(300,200)
 frame:SetPoint("BOTTOMLEFT",300,170)
 
-SlashCmdList.MYSTAT = function() ToggleFrame(frame) end
-SLASH_MYSTAT1 = "/mystat"
-
-
 local text = frame:CreateFontString(nil,"ARTWORK","GameFontHighlightLarge")
 text:SetAllPoints(frame)
-local function statString(self, event,...)
+local function statString()
 	local mastery = format("精通: %.2f%%|n", GetMasteryEffect())
 	local haste = format("急速: %.2f%%|n", GetHaste())
 	local crit = format("暴击: %.2f%%|n", GetCritChance())
 	local versatility = format("全能: %.2f%%", GetCombatRatingBonus(29) + GetVersatilityBonus(29))
-	
+
 	local primaryStat
 	if specType == 1 then
 		primaryStat = "智力: " .. UnitStat("player", 4).."|n"
