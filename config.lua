@@ -53,7 +53,7 @@ local function SetFramePoint(frame, pos)
 	previous = frame
 end
 
-local function newCheckBox(label, name, desc, pos, get, set)
+local function newCheckBox(label, name, desc, pos, get, set, init)
 	local check = CreateFrame("CheckButton", "RgsAddonConfig"..label, configFrame, "InterfaceOptionsCheckButtonTemplate")
 	check:SetScript("OnClick", function(self)
 		local checked = self:GetChecked()
@@ -61,6 +61,7 @@ local function newCheckBox(label, name, desc, pos, get, set)
 		PlaySound(checked and 856 or 857)
 	end)
 	check.getfunc = get or function() return C.db[label] end
+	check.initfunc = init or function() end
 	_G[check:GetName().."Text"]:SetText(name)
 	check.tooltipText = name
 	check.tooltipRequirement = desc
@@ -214,15 +215,17 @@ rgsaddon:AddInitFunc(function()
 	function(checked)
 		C.db.stats = checked
 		C:SetupStats(checked)
-	end)
+	end,
+	function() C:SetupStats(C.db.stats) end)
 	newCheckBox("stealth", "潜行警报", nil, 1,
 	nil,
 	function(checked)
-		C.db.stats = checked
+		C.db.stealth = checked
 		C:SetupStealth(checked)
 	end)
 	-- Set values in config
 	for _,v in pairs(options.check) do
+		v.initfunc()
 		v:SetChecked(v.getfunc())
 	end
 	for _,v in pairs(options.slider) do

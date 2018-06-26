@@ -69,6 +69,7 @@ eventFrame:SetScript("OnEvent", specFunc)
 local frame = CreateFrame("Frame", "MyStatFrame", UIParent)
 frame:SetSize(300,200)
 frame:SetPoint("BOTTOMLEFT",300,170)
+frame:Hide()
 
 local text = frame:CreateFontString(nil,"ARTWORK","GameFontHighlightLarge")
 text:SetAllPoints(frame)
@@ -99,7 +100,10 @@ frame:RegisterUnitEvent("UNIT_AURA", "player")
 function C:SetupStats(enable)
 	if enable then
 		frame:SetScript("OnEvent", statString)
+		frame:Show()
+		statString()
 	else
 		frame:SetScript("OnEvent", nil)
+		frame:Hide()
 	end
 end
