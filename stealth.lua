@@ -30,15 +30,10 @@ local spellTbl = {
 local myFaction
 rgsaddon:AddInitFunc(function() myFaction = UnitFactionGroup("player") end)
 
-local function GetFactionByGUID(guid)
-	if not guid then return end
-	local _,_,_,race = GetPlayerInfoByGUID(guid)
-	return raceTbl[race]
-end
-
 local function StealthAlert(_,_,_, Event, _, sourceGUID, _, _, _, _, _, _, _, spellID)
-	if Event == "SPELL_CAST_SUCCESS" then
-		local faction = GetFactionByGUID(sourceGUID)
+	if Event == "SPELL_CAST_SUCCESS" and sourceGUID and type(sourceGUID) == "string" then
+		local _,_,_,race = GetPlayerInfoByGUID(sourceGUID)
+		local faction = raceTbl[race]
 		if faction and faction ~= myFaction then
 			local alert = spellTbl[spellID]
 			if alert then DEFAULT_CHAT_FRAME:AddMessage(alert,1,0,0) end

@@ -89,7 +89,8 @@ rgsaddon:AddInitFunc(function()
 	function(checked)
 		C.db.stealth = checked
 		C:SetupStealth(checked)
-	end)
+	end,
+	function() C:SetupStealth(C.db.stealth) end)
 	-- Set values in config
 	for _,v in pairs(options.check) do
 		v.initfunc()
