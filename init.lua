@@ -1,17 +1,19 @@
-local _, rgsaddon = ...
+local E = ElvUI[1]
+local RgsToolbox = E:NewModule('RgsToolbox');
+local EP = LibStub("LibElvUIPlugin-1.0")
+local addonName, rgsaddon = ...
 rgsaddon[1] = {} -- Config
-rgsaddon[2] = {} -- Locales
-local C, L = unpack(rgsaddon)
-setmetatable(L, {__index=function(_, key) return key end})
+rgsaddon[2] = RgsToolbox
 
 local init = {}
-function rgsaddon:AddInitFunc(func)
-	init[#init+1] = func
+function RgsToolbox:AddInitFunc(func)
+    init[#init+1] = func
 end
 
-local f = CreateFrame("Frame")
-f:RegisterEvent("PLAYER_LOGIN")
-f:SetScript("OnEvent", function()
-	for _,v in ipairs(init) do v() end
-	init = nil
-end)
+function RgsToolbox:Initialize()
+    for _,v in ipairs(init) do v() end
+    init = nil
+    EP:RegisterPlugin(addonName, RgsToolbox.InsertOptions)
+end
+
+E:RegisterModule(RgsToolbox:GetName())

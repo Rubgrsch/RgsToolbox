@@ -1,5 +1,5 @@
 local _, rgsaddon = ...
-local C = unpack(rgsaddon)
+local C, R = unpack(rgsaddon)
 
 local format = string.format
 
@@ -97,8 +97,8 @@ frame:RegisterEvent("PLAYER_DAMAGE_DONE_MODS")
 frame:RegisterUnitEvent("UNIT_STATS", "player")
 frame:RegisterUnitEvent("UNIT_AURA", "player")
 
-function C:SetupStats(enable)
-	if enable then
+function C:SetupStats()
+	if C.db.stats then
 		frame:SetScript("OnEvent", statString)
 		frame:Show()
 		statString()
@@ -107,3 +107,5 @@ function C:SetupStats(enable)
 		frame:Hide()
 	end
 end
+
+R:AddInitFunc(C.SetupStats)

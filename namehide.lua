@@ -1,5 +1,5 @@
-local addonName, rgsaddon = ...
-local C, L = unpack(rgsaddon)
+local _, rgsaddon = ...
+local C, R = unpack(rgsaddon)
 
 local pairs, ipairs = pairs, ipairs
 local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
@@ -46,8 +46,8 @@ f:SetScript("OnEvent", nameHide)
 local q = CreateFrame("Frame")
 q:SetScript("OnEvent", queneRun)
 
-function C:SetupNamehide(enable)
-	if enable then
+function C:SetupNamehide()
+	if C.db.namehide then
 		f:RegisterEvent("PLAYER_ENTERING_WORLD")
 		f:RegisterEvent("ZONE_CHANGED")
 		f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
@@ -60,3 +60,5 @@ function C:SetupNamehide(enable)
 		q:UnregisterEvent("PLAYER_REGEN_ENABLED")
 	end
 end
+
+R:AddInitFunc(C.SetupNamehide)

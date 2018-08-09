@@ -1,5 +1,5 @@
-local addonName, rgsaddon = ...
-local C, L = unpack(rgsaddon)
+local _, rgsaddon = ...
+local C, R = unpack(rgsaddon)
 
 local raceTbl = {
 	Human = "Alliance",
@@ -27,15 +27,12 @@ local spellTbl = {
 	[5215] = ">>>潜行<<<",
 }
 
-local myFaction
-rgsaddon:AddInitFunc(function() myFaction = UnitFactionGroup("player") end)
-
 local function StealthAlert()
 	local _, Event, _, sourceGUID, _, _, _, _, _, _, _, spellID = CombatLogGetCurrentEventInfo()
 	if Event == "SPELL_CAST_SUCCESS" and sourceGUID and type(sourceGUID) == "string" and sourceGUID ~= "" then
 		local _,_,_,race = GetPlayerInfoByGUID(sourceGUID)
 		local faction = raceTbl[race]
-		if faction and faction ~= myFaction then
+		if faction and faction ~= UnitFactionGroup("player") then
 			local alert = spellTbl[spellID]
 			if alert then DEFAULT_CHAT_FRAME:AddMessage(alert,1,0,0) end
 		end
@@ -45,10 +42,12 @@ end
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 
-function C:SetupStealth(enable)
-	if enable then
+function C:SetupStealth()
+	if C.db.stealth then
 		frame:SetScript("OnEvent", StealthAlert)
 	else
 		frame:SetScript("OnEvent", nil)
 	end
 end
+
+R:AddInitFunc(C.SetupStealth)
