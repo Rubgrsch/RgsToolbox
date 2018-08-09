@@ -8,6 +8,7 @@ local PlaySound = PlaySound
 local defaults = {
 	stats = false,
 	stealth = false,
+	namehide = false,
 }
 
 rgsaddon:AddInitFunc(function()
@@ -91,6 +92,13 @@ rgsaddon:AddInitFunc(function()
 		C:SetupStealth(checked)
 	end,
 	function() C:SetupStealth(C.db.stealth) end)
+	newCheckBox("namehide", "主城隐藏姓名", nil, 1,
+	nil,
+	function(checked)
+		C.db.namehide = checked
+		C:SetupNamehide(checked)
+	end,
+	function() C:SetupNamehide(C.db.namehide) end)
 	-- Set values in config
 	for _,v in pairs(options.check) do
 		v.initfunc()

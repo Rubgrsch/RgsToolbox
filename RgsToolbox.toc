@@ -9,3 +9,4 @@ config.lua
 stat.lua
 stealth.lua
 misc.lua
+namehide.lua
