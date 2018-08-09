@@ -17,6 +17,8 @@ local majorCity = {
 	[624] = true, -- Warspear, Draenor
 	[622] = true, -- Stormshield, Draenor
 	[627] = true, -- Dalaran, the Broken Isles
+	[1163] = true, -- Atal' Dazar, Zuldazar
+	[1161] = true, -- Boralus, Tiragarde Sound
 }
 
 local CVarT = {"UnitNameFriendlyPlayerName", "UnitNameFriendlyPetName", "UnitNameEnemyPlayerName", "UnitNameEnemyPetName"}
