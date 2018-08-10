@@ -2,7 +2,6 @@
 ## Title: RgsToolbox
 ## Version: v1
 ## Author: Rubgrsch
-## SavedVariables: rgsboxDB
 ## Required: ElvUI
 
 init.lua
