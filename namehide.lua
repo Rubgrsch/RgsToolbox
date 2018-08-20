@@ -1,7 +1,7 @@
 local _, rgsaddon = ...
 local C, R = unpack(rgsaddon)
 
-local pairs, ipairs = pairs, ipairs
+local ipairs = ipairs
 local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
 local GetCVar, SetCVar = GetCVar, SetCVar
 
@@ -23,20 +23,20 @@ local majorCity = {
 
 local CVarT = {"UnitNameFriendlyPlayerName", "UnitNameFriendlyPetName", "UnitNameEnemyPlayerName", "UnitNameEnemyPetName"}
 
--- SetCVar won't work in combat, quene them first.
-local quene = {}
-local combat = false
-local function queneRun()
-	for CVar, v in pairs(quene) do if GetCVar(CVar) ~= v then SetCVar(CVar,v) end end
-	quene = {}
+-- SetCVar won't work in combat, queue them first.
+local queue = nil
+local function queueRun()
+	local v = queue
+	if v ~= nil then
+		for _, CVar in ipairs(CVarT) do if GetCVar(CVar) ~= v then SetCVar(CVar,v) end end
+		queue = nil
+	end
 end
 
 local function nameHide()
 	local v = majorCity[C_Map_GetBestMapForUnit("player")] and 0 or 1
-	quene = {}
-	combat = InCombatLockdown()
-	if combat then
-		for _, CVar in ipairs(CVarT) do quene[CVar] = v end
+	if InCombatLockdown() then
+		queue = v
 	else
 		for _, CVar in ipairs(CVarT) do if GetCVar(CVar) ~= v then SetCVar(CVar, v) end end
 	end
@@ -46,7 +46,7 @@ local f = CreateFrame("Frame")
 f:SetScript("OnEvent", nameHide)
 
 local q = CreateFrame("Frame")
-q:SetScript("OnEvent", queneRun)
+q:SetScript("OnEvent", queueRun)
 
 function C:SetupNamehide()
 	if C.db.namehide then
