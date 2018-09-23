@@ -11,3 +11,4 @@ stealth.lua
 misc.lua
 namehide.lua
 dressup.lua
+DazarAlorTotems.lua
