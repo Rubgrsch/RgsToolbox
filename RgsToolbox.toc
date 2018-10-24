@@ -12,3 +12,4 @@ misc.lua
 namehide.lua
 dressup.lua
 DazarAlorTotems.lua
+gamma.lua
