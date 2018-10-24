@@ -18,3 +18,11 @@ if GetLocale() == "zhCN" then
 		GuildControlUIRankSettingsFrameRosterLabel:Hide()
 	end
 end
+
+-- Auto Achievement Screenshot, stolen from EKCore
+local AutoScreenshot = CreateFrame("Frame")
+AutoScreenshot:RegisterEvent("ACHIEVEMENT_EARNED")
+AutoScreenshot:RegisterEvent("CHALLENGE_MODE_COMPLETED") -- SCENARIO_COMPLETED/SCENARIO_CRITERIA_UPDATE/SCENARIO_UPDATE?
+AutoScreenshot:SetScript("OnEvent", function()
+	C_Timer.After(1,Screenshot)
+end)
