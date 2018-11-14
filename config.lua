@@ -2,8 +2,6 @@ local _, rgsaddon = ...
 local C, R = unpack(rgsaddon)
 local E, _, _, P = unpack(ElvUI)
 
-local pairs = pairs
-
 P.RgsToolbox = {
 	stats = false,
 	stealth = false,

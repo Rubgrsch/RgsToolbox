@@ -5,7 +5,7 @@ function DressUpVisual(...)
 			SideDressUpFrame.mode = "player";
 			SideDressUpFrame.ResetButton:Show();
 
-			local race, fileName = UnitRace("player");
+			local _, fileName = UnitRace("player");
 			SetDressUpBackground(SideDressUpFrame, fileName);
 
 			ShowUIPanel(SideDressUpFrame);

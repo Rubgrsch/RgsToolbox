@@ -120,7 +120,7 @@ local function NewLine(sx, sy, ex, ey, w, parent)
 		Bwid = ((l * c) - (w * s)) * LINEFACTOR_2;
 		Bhgt = ((w * c) - (l * s)) * LINEFACTOR_2;
 		BLx, BLy, BRy = (w / l) * sc, s * s, (l / w) * sc;
-		BRx, TLx, TLy, TRx = 1 - BLy, BLy, 1 - BRy, 1 - BLx; 
+		BRx, TLx, TLy, TRx = 1 - BLy, BLy, 1 - BRy, 1 - BLx;
 		TRy = BRx;
 	else
 		Bwid = ((l * c) + (w * s)) * LINEFACTOR_2;

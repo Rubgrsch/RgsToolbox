@@ -3,11 +3,11 @@
 -- [[ 根據地點調整亮度 ]] --
 
 local tbl = {
-	[1015] = true,	-- 威奎斯特莊園 / Waycrest Manor - The Grand Foyer 
+	[1015] = true,	-- 威奎斯特莊園 / Waycrest Manor - The Grand Foyer
 	[1016] = true,	-- 威奎斯特莊園 / Waycrest Manor - Upstairs
 	[1017] = true,	-- 威奎斯特莊園 / Waycrest Manor - The Cellar
 	[1018] = true,	-- 威奎斯特莊園 / Waycrest Manor - Catacombs
-	
+
 	[974] = true,	-- 托達戈爾 / Tol Dagor
 	[975] = true,	-- 托達戈爾 / Tol Dagor - The Drain
 	[976] = true,	-- 托達戈爾 / Tol Dagor - The Brig
