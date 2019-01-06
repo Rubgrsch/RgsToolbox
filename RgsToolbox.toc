@@ -1,4 +1,4 @@
-## Interface:80000
+## Interface:80100
 ## Title: RgsToolbox
 ## Version: v1
 ## Author: Rubgrsch
@@ -13,3 +13,4 @@ namehide.lua
 dressup.lua
 DazarAlorTotems.lua
 gamma.lua
+invasion.lua
