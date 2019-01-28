@@ -1,5 +1,8 @@
+local _, rgsaddon = ...
+local C, R = unpack(rgsaddon)
 
-function DressUpVisual(...)
+local DressUpVisual_old = DressUpVisual
+local function DressUpVisual_new(...)
 	if ( SideDressUpFrame.parentFrame and SideDressUpFrame.parentFrame:IsShown() ) then
 		if ( not SideDressUpFrame:IsShown() or SideDressUpFrame.mode ~= "player" ) then
 			SideDressUpFrame.mode = "player";
@@ -19,4 +22,13 @@ function DressUpVisual(...)
 		DressUpModel:TryOn(...);
 	end
 	return true;
+end
+
+
+function C:SetupDressup()
+	if C.db.nakePreview then
+		DressUpVisual = DressUpVisual_new
+	else
+		DressUpVisual = DressUpVisual_old
+	end
 end

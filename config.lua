@@ -19,6 +19,7 @@ function R:InsertOptions()
 		type = "group",
 		name = "RgsToolbox",
 		get = function(info) return C.db[info[#info]] end,
+		set = function(info,value) C.db[info[#info]] = value end,
 		args = {
 			stats = {
 				order = 1,
@@ -37,6 +38,17 @@ function R:InsertOptions()
 				name = "主城隐藏姓名",
 				type = "toggle",
 				set = function(info,value) C.db[info[#info]] = value; C:SetupNamehide() end,
+			},
+			nakePreview = {
+				order = 4,
+				name = "单件外观预览",
+				type = "toggle",
+				set = function(info,value) C.db[info[#info]] = value; C:SetupDressup() end,
+			},
+			autoScreenshot = {
+				order = 5,
+				name = "自动截屏",
+				type = "toggle",
 			},
 		},
 	}

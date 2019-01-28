@@ -67,7 +67,7 @@ eventFrame:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
 eventFrame:SetScript("OnEvent", specFunc)
 
 local frame = CreateFrame("Frame", "MyStatFrame", UIParent)
-frame:SetSize(300,200)
+frame:SetSize(200,100)
 frame:SetPoint("BOTTOMLEFT",300,170)
 frame:Hide()
 
@@ -101,6 +101,7 @@ function C:SetupStats()
 	if C.db.stats then
 		frame:SetScript("OnEvent", statString)
 		frame:Show()
+		ElvUI[1]:CreateMover(frame,"RgsStat", "实时属性")
 		statString()
 	else
 		frame:SetScript("OnEvent", nil)
