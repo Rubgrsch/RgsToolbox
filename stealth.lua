@@ -19,6 +19,10 @@ local raceTbl = {
 	LightforgedDraenei = "Alliance",
 	HighmountainTauren = "Horde",
 	Nightborne = "Horde",
+	MagharOrc = "Horde",
+	DarkIronDwarf = "Alliance",
+	ZandalariTroll = "Horde",
+	KulTiran = "Alliance",
 }
 
 local spellTbl = {
