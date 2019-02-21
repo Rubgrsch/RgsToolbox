@@ -1,6 +1,8 @@
 local _, rgsaddon = ...
 local C, R = unpack(rgsaddon)
 
+if not C.db.namehide then return end
+
 local ipairs = ipairs
 local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
 local GetCVar, SetCVar = GetCVar, SetCVar
@@ -43,24 +45,13 @@ local function nameHide()
 end
 
 local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_ENTERING_WORLD")
+f:RegisterEvent("ZONE_CHANGED")
+f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 f:SetScript("OnEvent", nameHide)
 
 local q = CreateFrame("Frame")
+q:RegisterEvent("PLAYER_REGEN_ENABLED")
 q:SetScript("OnEvent", queueRun)
 
-function C:SetupNamehide()
-	if C.db.namehide then
-		f:RegisterEvent("PLAYER_ENTERING_WORLD")
-		f:RegisterEvent("ZONE_CHANGED")
-		f:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-		q:RegisterEvent("PLAYER_REGEN_ENABLED")
-		nameHide()
-	else
-		f:UnregisterEvent("PLAYER_ENTERING_WORLD")
-		f:UnregisterEvent("ZONE_CHANGED")
-		f:UnregisterEvent("ZONE_CHANGED_NEW_AREA")
-		q:UnregisterEvent("PLAYER_REGEN_ENABLED")
-	end
-end
-
-R:AddInitFunc(C.SetupNamehide)
+nameHide()

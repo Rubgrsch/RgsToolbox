@@ -3,6 +3,9 @@ local C, R = unpack(rgsaddon)
 
 local format = string.format
 
+
+if not C.db.stats then return end
+
 local intID = {
 	[62] = true,
 	[63] = true,
@@ -96,17 +99,6 @@ frame:RegisterEvent("PLAYER_TALENT_UPDATE")
 frame:RegisterEvent("PLAYER_DAMAGE_DONE_MODS")
 frame:RegisterUnitEvent("UNIT_STATS", "player")
 frame:RegisterUnitEvent("UNIT_AURA", "player")
-
-function C:SetupStats()
-	if C.db.stats then
-		frame:SetScript("OnEvent", statString)
-		frame:Show()
-		ElvUI[1]:CreateMover(frame,"RgsStat", "实时属性")
-		statString()
-	else
-		frame:SetScript("OnEvent", nil)
-		frame:Hide()
-	end
-end
-
-R:AddInitFunc(C.SetupStats)
+frame:SetScript("OnEvent", statString)
+ElvUI[1]:CreateMover(frame,"RgsStat", "实时属性")
+statString()

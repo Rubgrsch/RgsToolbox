@@ -1,6 +1,7 @@
 local _, rgsaddon = ...
 local C, R = unpack(rgsaddon)
 
+if not C.db.stealth then return end
 local raceTbl = {
 	Human = "Alliance",
 	NightElf = "Alliance",
@@ -45,13 +46,4 @@ end
 
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-
-function C:SetupStealth()
-	if C.db.stealth then
-		frame:SetScript("OnEvent", StealthAlert)
-	else
-		frame:SetScript("OnEvent", nil)
-	end
-end
-
-R:AddInitFunc(C.SetupStealth)
+frame:SetScript("OnEvent", StealthAlert)
