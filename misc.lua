@@ -16,11 +16,6 @@ if GetLocale() == "zhCN" then
 		timeout = 0,
 		whileDead = 1,
 	}
-
-	if not GuildControlUIRankSettingsFrameRosterLabel then
-		GuildControlUIRankSettingsFrameRosterLabel = CreateFrame("Frame")
-		GuildControlUIRankSettingsFrameRosterLabel:Hide()
-	end
 end
 
 -- Auto Achievement Screenshot, stolen from EKCore
