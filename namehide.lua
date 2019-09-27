@@ -7,6 +7,7 @@ local ipairs = ipairs
 local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
 local GetCVar, SetCVar = GetCVar, SetCVar
 
+-- /dump C_Map.GetBestMapForUnit("player")
 local majorCity = {
 	[85] = true, -- Orgrimmar
 	[86] = true, -- Orgrimmar
@@ -21,6 +22,8 @@ local majorCity = {
 	[627] = true, -- Dalaran, the Broken Isles
 	[1163] = true, -- Atal' Dazar, Zuldazar
 	[1161] = true, -- Boralus, Tiragarde Sound
+	[1473] = true,
+	[81] = true,
 }
 
 local CVarT = {"UnitNameFriendlyPlayerName", "UnitNameFriendlyPetName", "UnitNameEnemyPlayerName", "UnitNameEnemyPetName"}
