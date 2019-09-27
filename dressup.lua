@@ -1,26 +1,35 @@
 local _, rgsaddon = ...
 local C, R = unpack(rgsaddon)
 
-if C.db.nakePreview then
+if C.db.nakePreview then	
 	function DressUpVisual(...)
-		if ( SideDressUpFrame.parentFrame and SideDressUpFrame.parentFrame:IsShown() ) then
-			if ( not SideDressUpFrame:IsShown() or SideDressUpFrame.mode ~= "player" ) then
-				SideDressUpFrame.mode = "player";
-				SideDressUpFrame.ResetButton:Show();
-
-				local _, fileName = UnitRace("player");
-				SetDressUpBackground(SideDressUpFrame, fileName);
-
-				ShowUIPanel(SideDressUpFrame);
-				SideDressUpModel:SetUnit("player");
+		local frame
+		if SideDressUpFrame.parentFrame and SideDressUpFrame.parentFrame:IsShown() then
+			frame = SideDressUpFrame;
+			if not raceFilename then
+				raceFilename = select(2, UnitRace("player"));
 			end
-			SideDressUpModel:Undress()
-			SideDressUpModel:TryOn(...);
 		else
-			DressUpFrame_Show();
-			DressUpModel:Undress()
-			DressUpModel:TryOn(...);
+			frame = DressUpFrame;
+			if not classFilename then
+				classFilename = select(2, UnitClass("player"));
+			end
 		end
+		SetDressUpBackground(frame, raceFilename, classFilename);
+
+		DressUpFrame_Show(frame);
+
+		local playerActor = frame.ModelScene:GetPlayerActor();
+		if (not playerActor) then
+			return false;
+		end
+
+		playerActor:Undress()
+		local result = playerActor:TryOn(...);
+		if ( result ~= Enum.ItemTryOnReason.Success ) then
+			UIErrorsFrame:AddExternalErrorMessage(ERR_NOT_EQUIPPABLE);
+		end
+		DressUpFrame_OnDressModel(frame);
 		return true;
 	end
 end
