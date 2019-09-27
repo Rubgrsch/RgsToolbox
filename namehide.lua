@@ -1,7 +1,5 @@
-local _, rgsaddon = ...
-local C, R = unpack(rgsaddon)
-
-if not C.db.namehide then return end
+local enabled = true
+if not enabled then return end
 
 local ipairs = ipairs
 local C_Map_GetBestMapForUnit = C_Map.GetBestMapForUnit
