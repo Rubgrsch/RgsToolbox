@@ -1,15 +1,11 @@
-## Interface:80200
+## Interface:80205
 ## Title: RgsToolbox
-## Version: v1
+## Version: 8.2.5
 ## Author: Rubgrsch
 ## Required: ElvUI
 
-init.lua
-config.lua
-stat.lua
 misc.lua
 namehide.lua
 dressup.lua
 gamma.lua
-#invasion.lua
 AutoLogging.lua
