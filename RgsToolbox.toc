@@ -9,3 +9,4 @@ namehide.lua
 dressup.lua
 gamma.lua
 AutoLogging.lua
+deathtimer.lua
