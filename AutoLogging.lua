@@ -22,7 +22,7 @@ local raidMapIDs = {
 local function GetCurrentMapForLogging()
 	local _, zoneType, difficulty, _, _, _, _, mapID = GetInstanceInfo()
 	mapID = mapID and tonumber(mapID)
-	if zoneType == 'raid' and raidMapIDs[mapID] then
+	if zoneType == 'raid' and raidMapIDs[mapID] and (difficulty ~= 7 and difficulty ~= 17) then
 		return true
 	elseif (difficulty == 8 or difficulty == 23) and partyMapIDs[mapID] then
 		return true
