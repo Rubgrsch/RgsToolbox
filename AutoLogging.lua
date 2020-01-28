@@ -17,6 +17,7 @@ local raidMapIDs = {
 	[2070] = true,
 	[2096] = true,
 	[2164] = true,
+	[2217] = true,
 }
 
 local function GetCurrentMapForLogging()
