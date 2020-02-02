@@ -1,4 +1,5 @@
 -- https://wow.gamepedia.com/InstanceMapID
+-- Use '/dump select(8, GetInstanceInfo())' to get new instance id
 local partyMapIDs = {
 	[1594] = true,
 	[1754] = true,
@@ -10,6 +11,7 @@ local partyMapIDs = {
 	[1862] = true,
 	[1864] = true,
 	[1877] = true,
+	[2097] = true,
 }
 
 local raidMapIDs = {
